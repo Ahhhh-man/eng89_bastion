@@ -103,7 +103,8 @@ Now click edit subnet assaciation and add the bastionSG
         proxy_set_header Host $host;
         proxy_cache_bypass $http_upgrade;
     }
-}```
+}
+```
 
 ### 13) Add DB_HOST to app instance
 - `export DB_HOST=mongodb://10.207.2.234:27017/posts`
