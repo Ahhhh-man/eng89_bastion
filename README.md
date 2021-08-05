@@ -55,7 +55,7 @@ With the following Rules
 
 Now click edit subnet assaciation and add the public SG
 
-### 7) Create NaCl for private
+### 8) Create NaCl for private
 With the following Rules
 - Inbound
 	- 100, 27017, 10.207.1.0/24
@@ -68,7 +68,7 @@ With the following Rules
 
 Now click edit subnet assaciation and add the private SG
 
-### 7) Create NaCl for bastion
+### 9) Create NaCl for bastion
 With the following Rules
 - Inbound
 	- 100, SSH, 0.0.0.0/0
@@ -80,8 +80,31 @@ With the following Rules
 Now click edit subnet assaciation and add the bastionSG
 
 ### 10) Create Instances
-- for app
-- for db
+- for app (using ami if possible)
+- for db (using ami if possible)
 	> Remark: Ensure IPv4 is disabled
 - for bastion
 
+### 11) Resolve Host (optional)
+- `sudo nano /etc/hosts` then add `10.xxx.xx.xx ip-10-xxx-xx-xxx` as the second loc
+
+### 12) Add Reverse Proxy
+- `cd /etc/nginx/sites-available`
+- `sudo nano default`
+- ```server {
+    listen 80;
+    server_name _;
+    location / {
+        proxy_pass http://127.0.0.1:3000;
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection 'upgrade';
+        proxy_set_header Host $host;
+        proxy_cache_bypass $http_upgrade;
+    }
+}```
+
+### 13) Add DB_HOST to app instance
+- `export DB_HOST=mongodb://10.207.2.234:27017/posts`
+
+### 14) check on browser 
