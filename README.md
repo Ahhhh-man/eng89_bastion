@@ -91,7 +91,8 @@ Now click edit subnet assaciation and add the bastionSG
 ### 12) Add Reverse Proxy
 - `cd /etc/nginx/sites-available`
 - `sudo nano default`
-- ```server {
+
+```server {
     listen 80;
     server_name _;
     location / {
