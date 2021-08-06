@@ -1,4 +1,5 @@
 # EC2 app w/ db
+![](https://github.com/Ahhhh-man/eng89_bastion/blob/main/diagram.png)
 
 ### 1) Create VPC
 - Name it whatever
